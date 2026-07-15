@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регламент преподавателя – ТЕОРЕМА</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== БАЗОВЫЕ СТИЛИ ===== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #eaf7ff;
+            margin: 0;
+            padding: 16px 12px 40px;
+            color: #1e3a5f;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            padding: 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* ===== ОБЛОЖКА ===== */
+        .cover {
+            background: linear-gradient(145deg, #1e3a5f 0%, #2a5a97 50%, #26c6f9 100%);
+            color: white;
+            padding: 40px 20px 30px;
+            text-align: center;
+            position: relative;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .cover .logo { max-width: 80px; margin-bottom: 14px; }
+        .cover h1 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin: 6px 0 4px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        }
+        .cover .sub {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+        .cover .divider { width: 80px; height: 3px; background: #ffb347; margin: 8px auto 16px; border-radius: 2px; }
+        .cover .details {
+            font-size: 13px;
+            opacity: 0.85;
+            letter-spacing: 0.5px;
+            line-height: 1.8;
+        }
+        .cover .details span {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 3px 14px;
+            border-radius: 30px;
+            margin: 3px 4px;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 12px;
+        }
+        .cover .year { margin-top: 18px; font-size: 14px; font-weight: 300; opacity: 0.6; letter-spacing: 4px; font-family: 'Exo 2', sans-serif; }
+        .cover .deco {
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cover .deco2 {
+            position: absolute;
+            top: -60px;
+            left: -60px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(38,198,249,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: pulseGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        /* ===== ЗАГОЛОВОК ДОКУМЕНТА ===== */
+        .doc-header {
+            padding: 20px 20px 10px;
+            text-align: center;
+            border-bottom: 2px solid rgba(38,198,249,0.15);
+            background: rgba(255,255,255,0.3);
+        }
+        .doc-header .inner-logo { max-width: 50px; margin-bottom: 8px; }
+        .doc-header h2 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 22px;
+            color: #1e3a5f;
+            margin: 0;
+        }
+        .doc-header .inner-sub { font-size: 14px; color: #556b86; font-family: 'Exo 2', sans-serif; }
+        .doc-header .version { font-size: 12px; color: #8899b0; margin-top: 4px; font-family: 'Exo 2', sans-serif; }
+
+        /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+        #content { padding: 12px 16px 30px; }
+
+        /* Вводный текст */
+        .intro-text {
+            background: rgba(38,198,249,0.06);
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            border-left: 4px solid #26c6f9;
+        }
+        .intro-text p { margin: 6px 0; font-size: 15px; }
+        .intro-text ul { padding-left: 20px; margin: 6px 0; }
+        .intro-text li { font-size: 14px; margin: 4px 0; }
+
+        /* ===== АККОРДЕОН (РАСКРЫВАЮЩИЕСЯ РАЗДЕЛЫ) ===== */
+        .accordion-item {
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(38,198,249,0.15);
+            border-radius: 14px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .accordion-item:hover {
+            border-color: rgba(38,198,249,0.3);
+            box-shadow: 0 4px 16px rgba(38,198,249,0.06);
+        }
+
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+            gap: 12px;
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #1e3a5f;
+        }
+        .accordion-header:hover {
+            background: rgba(38,198,249,0.06);
+        }
+        .accordion-header .icon {
+            flex-shrink: 0;
+            font-size: 22px;
+            color: #26c6f9;
+            transition: transform 0.3s ease;
+            width: 28px;
+            text-align: center;
+        }
+        .accordion-header .icon.open {
+            transform: rotate(45deg);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 18px;
+            background: rgba(255,255,255,0.15);
+        }
+        .accordion-body.open {
+            max-height: 2000px;
+            padding: 0 18px 18px;
+        }
+
+        .accordion-body h3 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: #2a5a97;
+            margin-top: 14px;
+            margin-bottom: 8px;
+        }
+        .accordion-body h4 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin-top: 14px;
+            margin-bottom: 6px;
+        }
+        .accordion-body p {
+            margin: 8px 0;
+            color: #2d4059;
+            font-size: 14px;
+        }
+        .accordion-body ul, .accordion-body ol {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        .accordion-body li {
+            margin: 4px 0;
+            color: #2d4059;
+            font-size: 14px;
+        }
+
+        /* Таблицы в аккордеоне */
+        .accordion-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 16px;
+            font-size: 13px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .accordion-body th, .accordion-body td {
+            border: 1px solid rgba(38,198,249,0.15);
+            padding: 8px 10px;
+            vertical-align: top;
+            text-align: left;
+        }
+        .accordion-body th {
+            background: rgba(38,198,249,0.08);
+            font-weight: 700;
+            color: #1e3a5f;
+            font-family: 'Exo 2', sans-serif;
+        }
+        .accordion-body td { background: rgba(255,255,255,0.4); }
+
+        .accordion-body .note {
+            background: rgba(38,198,249,0.06);
+            padding: 10px 16px;
+            border-left: 4px solid #26c6f9;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+        }
+        .accordion-body .checklist { list-style: none; padding-left: 0; }
+        .accordion-body .checklist li::before { content: "☐ "; font-size: 16px; color: #26c6f9; }
+        .accordion-body .checklist li { margin: 6px 0; }
+
+        .accordion-body .motivation {
+            background: linear-gradient(135deg, rgba(38,198,249,0.08) 0%, rgba(42,90,151,0.04) 100%);
+            border: 1px solid rgba(38,198,249,0.15);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-top: 14px;
+            font-style: italic;
+            color: #1e3a5f;
+            font-size: 14px;
+            font-family: 'Exo 2', sans-serif;
+        }
+        .accordion-body .motivation::before {
+            content: "✦ ";
+            font-size: 18px;
+            color: #26c6f9;
+            font-style: normal;
+        }
+        .accordion-body .motivation strong { font-style: normal; color: #1e3a5f; }
+
+        .accordion-body blockquote {
+            font-style: italic;
+            margin: 8px 0 8px 16px;
+            padding: 0 0 0 14px;
+            border-left: 3px solid #26c6f9;
+            color: #2d4059;
+            font-size: 14px;
+        }
+
+        /* ===== ПОДВАЛ ===== */
+        .footer {
+            text-align: center;
+            color: #8899b0;
+            font-size: 12px;
+            border-top: 1px solid rgba(38,198,249,0.1);
+            padding: 14px 16px;
+            font-family: 'Exo 2', sans-serif;
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+        @media (max-width: 600px) {
+            body { padding: 10px 8px 30px; }
+            .cover { padding: 28px 16px 22px; min-height: 220px; }
+            .cover h1 { font-size: 24px; }
+            .cover .sub { font-size: 14px; }
+            .cover .details span { font-size: 11px; padding: 2px 10px; }
+            .doc-header h2 { font-size: 18px; }
+            #content { padding: 10px 12px 20px; }
+            .accordion-header { font-size: 14px; padding: 12px 14px; }
+            .accordion-header .icon { font-size: 18px; width: 24px; }
+            .accordion-body { padding: 0 14px; }
+            .accordion-body.open { padding: 0 14px 14px; }
+            .accordion-body table { font-size: 12px; }
+            .accordion-body th, .accordion-body td { padding: 5px 6px; }
+            .intro-text { padding: 10px 14px; }
+            .intro-text p, .intro-text li { font-size: 13px; }
+        }
+        @media (max-width: 400px) {
+            .cover h1 { font-size: 20px; }
+            .accordion-header { font-size: 13px; padding: 10px 12px; }
+            .accordion-body { font-size: 13px; }
+        }
+
+        /* ===== СТИЛИ ДЛЯ ПЕЧАТИ ===== */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border-radius: 0; background: white; backdrop-filter: none; }
+            .accordion-body { max-height: none !important; padding: 8px 16px 16px !important; }
+            .accordion-header .icon { display: none; }
+            .accordion-header { cursor: default; }
+            .accordion-item { break-inside: avoid; border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ====== ОБЛОЖКА ====== -->
+    <div class="cover">
+        <div class="deco"></div>
+        <div class="deco2"></div>
+        <img src="https://s6.iimage.su/s/14/th_gHaZk9bx9Sh1jHWbZTTXBzzun7iwBpVrDEU4bCDYv.png" alt="Логотип ТЕОРЕМА" class="logo">
+        <div class="divider"></div>
+        <h1>Регламент преподавателя</h1>
+        <div class="sub">Репетиторский центр «ТЕОРЕМА»</div>
+        <div class="divider"></div>
+        <div class="details">
+            <span>Стандарты работы</span>
+            <span>Педагогический кодекс</span>
+            <span>Критерии качества</span>
+        </div>
+        <div class="year">2026</div>
+    </div>
+
+    <!-- ====== ЗАГОЛОВОК ДОКУМЕНТА ====== -->
+    <div class="doc-header">
+        <img src="https://s6.iimage.su/s/14/th_gHaZk9bx9Sh1jHWbZTTXBzzun7iwBpVrDEU4bCDYv.png" alt="Логотип ТЕОРЕМА" class="inner-logo">
+        <h2>Регламент преподавателя</h2>
+        <div class="inner-sub">Репетиторский центр «ТЕОРЕМА»</div>
+        <div class="version">Версия 2.0 • 2026 год</div>
+    </div>
+
+    <!-- ====== ОСНОВНОЕ СОДЕРЖАНИЕ ====== -->
+    <div id="content">
+
+        <!-- Вводный текст -->
+        <div class="intro-text">
+            <p><strong>Цель документа</strong> — обеспечить высокое качество процесса преподавания, единые стандарты работы преподавателей, прозрачность для родителей и управляемость операционных процессов.</p>
+            <p><strong>Сфера применения</strong> — все преподаватели.</p>
+            <p><strong>Обязательность</strong> — регламент обязателен к исполнению. Нарушения влияют на критерий <strong>Надежность</strong>.</p>
+            <p style="margin-top: 8px;"><strong>Структура документа:</strong></p>
+            <ul>
+                <li>Основной регламент — правила, обязанности, стандарты, KPI (Разделы 1–12).</li>
+                <li>Раздел 13 — внешний вид и поведение преподавателя.</li>
+                <li>Раздел 14 — скрипты для общения с учениками.</li>
+                <li>Раздел 15 — чек-лист пробного занятия.</li>
+                <li>Раздел 16 — ежедневный чек-лист преподавателя.</li>
+                <li>Раздел 17 — стандарты работы с отзывами и репутацией.</li>
+                <li>Раздел 18 — протокол адаптации и удержания клиентов (Retention).</li>
+                <li>Раздел 19 — стандарты качества учебного процесса.</li>
+                <li>Раздел 20 — политика конфиденциальности и защита данных.</li>
+            </ul>
+        </div>
+
+        <!-- ====================================================================== -->
+        <!-- ====== АККОРДЕОН — РАЗДЕЛЫ 1–20 ====== -->
+
+        <!-- ===== РАЗДЕЛ 1 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>1. Абонементная система и ответственность за удержание клиентов</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <p><strong>Цель</strong> — обеспечить предсказуемый доход и мотивировать преподавателя на качество.</p>
+                <p><strong>Действие</strong> — работать в системе абонементов: 4/8/12 занятий 4 недели.</p>
+                <p><strong>Стандарт</strong> — продление абонемента (Retention) — ключевой критерий Надежности. Норма &gt; 80%.</p>
+                <p><strong>Исключение</strong> — если клиент уходит по объективным причинам (переезд, смена школы), это не влияет на Надежность, при документальном подтверждении.</p>
+                <p><strong>Зоны ответственности:</strong></p>
+                <ul>
+                    <li><strong>Преподаватель</strong> — качество занятий, обратная связь, выявление проблем на ранних стадиях.</li>
+                    <li><strong>Администратор</strong> — коммуникация с родителем по оплате, напоминание о продлении, сбор обратной связи.</li>
+                    <li><strong>Родитель</strong> — информирование о решении продлить или не продлевать абонемент.</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Удержать клиента — значит быть профессионалом вдвойне.</strong> Retention — это не про деньги, это про доверие. Каждый продлённый абонемент — знак того, что родитель видит результат и верит в тебя.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 2 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>2. Пробное занятие (бесплатное)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <p><strong>Цель</strong> — познакомить ученика с форматом центра, показать качество работы, дать родителю объективную картину уровня и плана, чтобы он принял решение о продолжении.</p>
+                <p><strong>Действие</strong> — провести пробное занятие строго по чек-листу (Раздел 15).</p>
+                <p><strong>Стандарт</strong> — 100% пробных занятий проходят по чек-листу. Конверсия в абонемент — целевой показатель.</p>
+                <p><strong>Исключение</strong> — если клиент пришёл с чётким запросом «только одно занятие» — согласовать с администратором, но чек-лист выполнить полностью.</p>
+                <div class="note">
+                    <strong>Важно:</strong> пробное занятие — бесплатное и ключевой момент для клиента. Именно на нём он принимает решение, оставаться в нашем центре или уйти в другой. Качество пробного должно быть максимальным, даже если клиент в итоге не останется — это формирует репутацию центра.
+                </div>
+                <div class="motivation">
+                    <strong>Пробное занятие — твой звездный час.</strong> Именно здесь ты показываешь, что ты можешь дать ученику. Сделай это занятие лучшим в своей неделе — и клиент останется с тобой надолго.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 3 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>3. Контакты и коммуникация</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <p><strong>Цель</strong> — исключить хаос в расписании и сохранить управляемость процесса.</p>
+                <p><strong>Действие</strong> — все организационные вопросы — через администратора. Преподаватель не передаёт и не запрашивает личные контакты.</p>
+                <p><strong>Стандарт</strong> — при обращении ученика/родителя напрямую — перенаправить к администратору по скрипту (Раздел 14). Сообщить администратору о факте обращения.</p>
+                <p><strong>Исключение</strong> — экстренный случай (например, ученик плохо себя чувствует) — преподаватель звонит родителю и администратору немедленно.</p>
+                <p><strong>Запрещено:</strong></p>
+                <ul>
+                    <li>Обсуждать с учеником или родителем переносы, отмены, пропуски, финансовые вопросы.</li>
+                    <li>Самостоятельно переносить или отменять занятия.</li>
+                    <li>Использовать личные контакты для организационных вопросов.</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Чёткие границы — залог порядка.</strong> Когда ты не смешиваешь личное и рабочее, ты сохраняешь фокус на главном — на качестве обучения. Администратор — твой партнёр, а не «переводчик».
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 4 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>4. Подготовка к занятию</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <p><strong>Цель</strong> — занятие начинается без задержек, преподаватель владеет актуальным расписанием, не пропускает новые записи и не едет зря на отменённое занятие.</p>
+                <p><strong>Действие</strong> — приходить в центр за 15 минут до начала. Регулярно мониторить CRM:</p>
+                <ul>
+                    <li>каждый преподаватель предоставил своё стабильное расписание (часы, в которые он готов вести занятия);</li>
+                    <li>администратор вносит учеников в свободные слоты этого расписания, а также фиксирует в CRM все отмены со стороны учеников;</li>
+                    <li>преподаватель обязан проверить CRM перед выходом из дома, чтобы убедиться, что его занятия не отменены;</li>
+                    <li>не полагаться на память – занятие могло быть отменено и зафиксировано в CRM.</li>
+                </ul>
+                <p><strong>Стандарт</strong> — просмотр CRM: обязательно мониторить + в центре за 15 минут (перепроверить и подготовить материалы). Печать материалов перед занятием.</p>
+                <p><strong>Исключение</strong> — если нет доступа к CRM (технический сбой) — сразу сообщить администратору в мессенджере и уточнить расписание устно.</p>
+                <div class="motivation">
+                    <strong>Дисциплина в мелочах создаёт свободу в большом.</strong> Проверка CRM перед выходом — это твой страховочный трос. Не дай себе приехать на отменённое занятие — уважай своё время.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 5 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>5. Дисциплина преподавателя (влияет на критерий Надежность)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <p><strong>Цель</strong> — обеспечить стабильность и предсказуемость расписания.</p>
+                <p><strong>Действие</strong> — начинать и заканчивать занятие строго по расписанию. Не опаздывать. Не инициировать переносы менее чем за 24 часа (кроме болезни).</p>
+                <p><strong>Стандарт</strong> — 0 нарушений — зелёная зона. 1 нарушение — жёлтая. 2 и более — красная – влияет на запись новых учеников.</p>
+                <p><strong>Исключение</strong> — болезнь с подтверждением (справка или сообщение за 3 часа) — не считается нарушением.</p>
+                <p><strong>Не допускается:</strong></p>
+                <ul>
+                    <li>Отпускать ученика раньше времени (даже на 5 минут) без согласования с родителем и администратором.</li>
+                    <li>Пропускать занятия без предупреждения.</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Твоя пунктуальность — это твоя репутация.</strong> Когда ты начинаешь вовремя, ты показываешь уважение к ученику, родителю и коллегам. Надёжность — это то, за что ценят профессионалов.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 6 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>6. Проведение занятия и работа с непониманием</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <p><strong>Цель</strong> — обеспечить усвоение материала каждым учеником, особенно «закрытыми».</p>
+                <p><strong>Действие</strong> — в конце каждой темы — проверка понимания (вопросы, задание, объяснение вслух). При сомнениях — практическая проверка.</p>
+                <p><strong>Стандарт</strong> — использовать скрипты и фразы из Раздела 14. Фиксировать сложные темы в файле динамики и возвращаться к ним через 1–2 занятия.</p>
+                <p><strong>Исключение</strong> — если ученик явно устал или болен — перенести проверку на следующее занятие, но зафиксировать в файле динамики.</p>
+                <p><strong>Красные флаги (требуют вмешательства):</strong></p>
+                <ul>
+                    <li>Отсутствие прогресса по 2 контрольным подряд.</li>
+                    <li>Систематическое невыполнение ДЗ (более 2 раз).</li>
+                    <li>Пропуски без уважительной причины.</li>
+                    <li>Жалобы ученика или негатив родителей.</li>
+                </ul>
+                <p><strong>Действия при красном флаге:</strong> зафиксировать → обсудить с администратором в течение 1 дня → включить в обратную связь родителю тактично → скорректировать план.</p>
+                <div class="motivation">
+                    <strong>Ты учишь не предмету — ты учишь думать.</strong> Если ученик не понял — это не его вина, это вызов для твоего мастерства. Найди другой способ объяснить, и ты увидишь, как зажигается искра в его глазах.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 7 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>7. Обратная связь родителям</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <p><strong>Цель</strong> — родитель видит прогресс и понимает ценность занятий.</p>
+                <p><strong>Действие</strong> — при завершении абонемента (каждые 4 недели): короткая обратная связь (1–2 абзаца) — что пройдено, прогресс, проблемы, рекомендация. По окончании четверти (раз в 3 месяца): развёрнутая — динамика, сравнение, план, прогноз.</p>
+                <p><strong>Стандарт</strong> — обратная связь согласовывается с администратором и отправляется через администратора. Срок: короткая – последний день абонемента, развёрнутая — за 3 дня до окончания четверти.</p>
+                <p><strong>Исключение</strong> — если родитель просит обратную связь вне графика — согласовать с администратором, дать в течение 2 дней.</p>
+                <div class="motivation">
+                    <strong>Родитель — твой союзник, а не контролёр.</strong> Когда ты даёшь ему обратную связь, ты даёшь ему уверенность. А уверенный родитель — это родитель, который продлевает абонемент и рекомендует тебя друзьям.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 8 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>8. Взаимодействие с администратором, CRM и мессенджерами</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <p><strong>Цель</strong> — все данные актуальны, администратор управляет процессом, преподаватель всегда в курсе расписания, не пропускает новые записи и не едет на отменённые занятия.</p>
+                <p><strong>CRM (главный инструмент):</strong></p>
+                <ul>
+                    <li>расписание, кабинеты, замены, изменения, а также все отмены со стороны учеников — только в CRM;</li>
+                    <li>администратор вносит отмены учеников в CRM сразу же после получения информации;</li>
+                    <li>преподаватель обязан заходить в CRM перед выходом из дома (или накануне вечером), чтобы увидеть возможные отмены, новые записи в свои свободные часы или замены;</li>
+                    <li>если администратор записал нового ученика или поставил замену на ваше свободное окно — это ваше занятие, вы обязаны его провести (вы дали это расписание);</li>
+                    <li><strong>важно:</strong> если вы не проверили CRM и приехали на отменённое занятие — это ваша ответственность, время потрачено зря;</li>
+                    <li>проставлять занятия в день проведения или до 12:00 следующего дня;</li>
+                    <li>если занятия нет в CRM — сигнал о неоплаченном абонементе, сообщить администратору.</li>
+                </ul>
+                <p><strong>Мессенджеры (WhatsApp, Telegram) — для оперативной связи с администратором:</strong></p>
+                <ul>
+                    <li>администратор может задать вопрос, уточнить детали, попросить выйти на замену в свободное время;</li>
+                    <li>преподаватель обязан быстро реагировать — в рабочее время (09:00–21:00).</li>
+                </ul>
+                <p><strong>Стандарт:</strong> вход в CRM: перед выходом из дома (или накануне) + в центре за 15 минут. Проставление занятий: до 12:00 следующего дня. Реагировать в мессенджере: до 30 минут (в рабочее время).</p>
+                <p><strong>Исключение:</strong> технический сбой в CRM — дублировать информацию в мессенджере администратору. Если администратор не отвечает более 1 часа в рабочее время — связаться с руководителем.</p>
+                <div class="motivation">
+                    <strong>CRM — твой главный помощник.</strong> Он не для бюрократии, он для твоего спокойствия. Проверяй его регулярно, и ты никогда не пропустишь новое занятие, не опоздаешь и не приедешь зря. Это твой цифровой щит.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 9 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>9. Замены коллег, влияние на критерий Надежность</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <p><strong>Цель</strong> — обеспечить бесперебойность занятий при отсутствии коллег.</p>
+                <p><strong>Действие</strong> — выходить на замены по запросу администратора. Передавать/получать материалы заменяющего преподавателя.</p>
+                <p><strong>Стандарт</strong> — 2+ замен в месяц — бонус к Надежности. 0 замен — нейтрально.</p>
+                <p><strong>Исключение</strong> — если преподаватель не может выйти на замену по объективной причине — вовремя сообщить администратору.</p>
+                <div class="motivation">
+                    <strong>Командный дух — это не пустые слова.</strong> Когда ты выходишь на замену, ты показываешь, что центр для тебя — не просто работа, а общее дело. Это заметят и оценят.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 10 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>10. Нештатные ситуации</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <table>
+                    <thead><tr><th>Ситуация</th><th>Действие преподавателя</th><th>Ответственный</th><th>Срок</th></tr></thead>
+                    <tbody>
+                        <tr><td>Ученик опаздывает</td><td>Ждать 5 минут, занятие сокращается на время опоздания. Если &gt;5 мин — сообщить администратору</td><td>Преподаватель — информирует; администратор — связывается с родителем</td><td>Немедленно</td></tr>
+                        <tr><td>Ученик не пришёл</td><td>Ждать 5 минут, уведомить администратора, после 15 мин, можно заняться другими делами.</td><td>Преподаватель — фиксирует; администратор — выясняет причину и решает с родителем о списании или переносе.</td><td>В течение 15 мин после окончания</td></tr>
+                        <tr><td>Преподаватель заболел</td><td>Предупредить администратора за 3 часа до первого занятия. Согласовать перенос в рамках абонемента или передать материалы заменяющему</td><td>Преподаватель — предупреждает; администратор — организует замену или время для переноса</td><td>За 3 часа до занятия</td></tr>
+                        <tr><td>Технический сбой, нет интернета, электричества.</td><td>Перезагрузить. Если не помогает — сообщить администратору, занятие по возможности провести.</td><td>Преподаватель — пытается решить; администратор — координирует</td><td>Немедленно</td></tr>
+                        <tr><td>Конфликт с учеником/родителем</td><td>Не спорить. Предложить обсудить с администратором в конце занятия. Зафиксировать суть и передать руководителю в течение дня</td><td>Преподаватель — деэскалация и фиксация; администратор/руководитель — разбор</td><td>В течение дня</td></tr>
+                    </tbody>
+                </table>
+                <div class="motivation">
+                    <strong>Хладнокровие в нештатной ситуации — это твой суперскилл.</strong> Ты не можешь контролировать всё, но ты можешь контролировать свою реакцию. Оставайся профессионалом в любой ситуации — это запоминается.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 11 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>11. Стандарты качества и Надежность преподавателя</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <table>
+                    <thead><tr><th>Критерий</th><th>Вес</th><th>Зелёная зона</th><th>Жёлтая зона</th><th>Красная зона</th></tr></thead>
+                    <tbody>
+                        <tr><td>Надёжность (опоздания, ранний отпуск, отмены, переносы со своей стороны, прямой контакт по оргвопросам)</td><td>Высокий</td><td>0 нарушений</td><td>1 нарушение</td><td>2 и более</td></tr>
+                        <tr><td>Проставление занятий в CRM (до 12:00 следующего дня)</td><td>Высокий</td><td>100%</td><td>80–99%</td><td>&lt; 80%</td></tr>
+                        <tr><td>Обратная связь родителям (в срок)</td><td>Высокий</td><td>в срок</td><td>задержка до 3 дней</td><td>задержка &gt; 3 дней или отсутствие</td></tr>
+                        <tr><td>Продление абонементов (Retention)</td><td>Высокий</td><td>&gt; 80%</td><td>60–80%</td><td>&lt; 60%</td></tr>
+                        <tr><td>Отсутствие обоснованных жалоб</td><td>Средний</td><td>0</td><td>1–2 за месяц</td><td>&gt; 2</td></tr>
+                        <tr><td>Регулярный вход в CRM, всегда в курсе движения расписания.</td><td>Средний</td><td>заходит ежедневно + перед каждым рабочим днём</td><td>пропускает 1–2 раза</td><td>пропускает регулярно</td></tr>
+                        <tr><td>Скорость ответа админу в мессенджере</td><td>Средний</td><td>до 30 мин</td><td>до 2 ч</td><td>&gt; 2 ч или игнорирование</td></tr>
+                        <tr><td>Участие в заменах</td><td>Бонус</td><td>2+ замен/мес</td><td>1 замена</td><td>0 замен</td></tr>
+                    </tbody>
+                </table>
+                <p><strong>Оценка проводится ежемесячно.</strong> Результаты влияют на критерии Надежности, влияет на запись новых учеников и обсуждаются на индивидуальных встречах с руководителем.</p>
+                <div class="motivation">
+                    <strong>KPI — это не оценка, это карта твоего роста.</strong> Они не для того, чтобы тебя наказать, а чтобы показать, где ты крут, а где можешь стать ещё лучше. Будь честен с собой — и ты будешь расти.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 12 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>12. Конфиденциальность и неразглашение информации</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <p><strong>Цель</strong> — защитить персональные данные клиентов и внутреннюю информацию центра от разглашения.</p>
+                <p><strong>Действие</strong> — не передавать третьим лицам контакты, данные, успехи или проблемы учеников; не обсуждать учеников с другими преподавателями, учениками или родителями вне рамок, необходимых для учебного процесса; не использовать внутренние документы центра (методики, прайсы, шаблоны) вне работы или для личных целей; не публиковать фото, видео или информацию об учениках без письменного согласия родителей.</p>
+                <p><strong>Стандарт</strong> — нарушение конфиденциальности — <strong>грубое дисциплинарное нарушение</strong>, влекущее за собой лишение премии, а при серьёзных случаях — увольнение и юридическую ответственность.</p>
+                <p><strong>Исключение</strong> — информация может быть передана только с письменного согласия родителя или по требованию уполномоченных государственных органов.</p>
+                <p><strong>Запрещено:</strong></p>
+                <ul>
+                    <li>Обсуждать успехи, проблемы или личную информацию других учеников с родителями или учениками.</li>
+                    <li>Показывать тетради, работы или диагностические материалы одного ученика другому (или его родителям).</li>
+                    <li>Выносить за пределы центра распечатки, методические материалы, шаблоны документов без разрешения руководителя.</li>
+                    <li>Обсуждать финансовые условия, договоры или внутренние процессы центра с клиентами или посторонними лицами.</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Конфиденциальность — это уважение к чужим границам.</strong> Родители доверяют тебе самое ценное — своих детей. Храни их данные и истории так же бережно, как свои собственные. Это делает тебя не просто учителем, а человеком, которому верят.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 13 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>13. Внешний вид и поведение преподавателя</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <h4>1. Внешний вид</h4>
+                <ul>
+                    <li>Одежда — опрятная, деловая или smart casual (без спортивных костюмов, шорт, глубоких вырезов, мятых вещей).</li>
+                    <li>Обувь — закрытая, чистая.</li>
+                    <li>Волосы, руки, лицо — ухоженные.</li>
+                </ul>
+                <p><strong>Запрещено:</strong></p>
+                <ul>
+                    <li>демонстрировать татуировки и пирсинг (прикрывать одеждой);</li>
+                    <li>яркие, отвлекающие аксессуары;</li>
+                    <li>резкие, тяжёлые парфюмы.</li>
+                </ul>
+                <h4>2. Поведение при ученике</h4>
+                <ul>
+                    <li>Тон — доброжелательный, сдержанный, уважительный.</li>
+                    <li>Обращение — по имени (на «вы» — для учеников старше 12 лет, если не оговорено иное).</li>
+                </ul>
+                <p><strong>Запрещено:</strong></p>
+                <ul>
+                    <li>обсуждать личную жизнь, политику, религию;</li>
+                    <li>рассказывать истории о своих школьных годах с негативом об учителях/родителях;</li>
+                    <li>критиковать школьных учителей или родителей ученика;</li>
+                    <li>подрывать авторитет школы и семьи;</li>
+                    <li>давать советы, противоречащие родительским запретам (тату, пирсинг, режим и т.д.);</li>
+                    <li>использовать ненормативную лексику, сленг, фамильярность.</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Твой внешний вид и поведение — это визитная карточка центра.</strong> Когда ты выглядишь профессионально и говоришь с уважением, ты не просто учишь — ты вдохновляешь. Ученик доверяет тебе, родитель доверяет центру.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 14 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>14. Скрипты для общения с учениками</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <h4>1. При перенаправлении к администратору (если пишут напрямую)</h4>
+                <blockquote>«Все вопросы по расписанию, переносам и оплате решает администратор. Пожалуйста, свяжитесь с ним/ней по номеру [номер] или напишите в общий чат центра. Я занимаюсь только учебной частью. Спасибо за понимание!»</blockquote>
+
+                <h4>2. Если ученик сообщает о пропуске напрямую</h4>
+                <blockquote>«Спасибо, что предупредил(а). Я передам администратору. В следующий раз, пожалуйста, пиши администратору напрямую — он занимается расписанием. До встречи!»</blockquote>
+
+                <h4>3. На вопрос «Зачем мне этот предмет? Он не пригодится»</h4>
+                <blockquote>«Отличный вопрос! Действительно, не все знания пригодятся напрямую. Но этот предмет развивает логическое мышление, умение анализировать, работать с информацией. Эти навыки пригодятся в любой профессии. А если мы сейчас разберёмся в теме, тебе будет легче справляться с контрольными и экзаменами — значит, больше свободного времени и уверенности. Давай посмотрим на это с другой стороны — возможно, станет интересно».</blockquote>
+
+                <h4>4. Если ученик жалуется на школьного учителя</h4>
+                <blockquote>«Я понимаю, бывает непросто. У каждого учителя свой подход. Но школьный учитель даёт тебе базу, которая поможет на экзаменах. Давай подумаем, как мы можем помочь тебе чувствовать себя увереннее на его уроках — например, разберём сложные темы заранее. А если есть конкретные вопросы, ты всегда можешь обратиться к учителю после урока — это покажет твою заинтересованность».</blockquote>
+
+                <h4>5. Если ученик жалуется на родителей</h4>
+                <blockquote>«Родители хотят для тебя лучшего, даже если их требования кажутся чрезмерными. Давай подумаем, как облегчить твою нагрузку, чтобы ты успевал и отдыхать, и выполнять задания. Возможно, скорректируем план занятий. Родители всегда могут обратиться ко мне или к администратору — мы открыты к диалогу».</blockquote>
+
+                <h4>6. Если ученик упоминает татуировки/пирсинг преподавателя</h4>
+                <blockquote>«Это личный выбор каждого человека. Важно помнить, что такие решения принимаются взрослыми. У тебя ещё будет время подумать. А сейчас давай сфокусируемся на занятии — сегодня интересная тема».</blockquote>
+
+                <h4>7. Фразы для безопасной среды</h4>
+                <ul>
+                    <li>«Если непонятно — это моя задача найти другой способ объяснить. Попробуем ещё раз».</li>
+                    <li>«Вопросы — лучший способ учиться. Чем больше спрашиваешь, тем быстрее результат».</li>
+                    <li>«Нет глупых вопросов. Если сомневаешься — спроси, я всегда рад объяснить иначе».</li>
+                    <li>«Расскажи своими словами, как ты это понял(а) — это поможет мне убедиться, что я объяснил достаточно ясно».</li>
+                    <li>«Давай проверим на практике — это самый надёжный способ».</li>
+                </ul>
+
+                <h4>8. Вопросы для проверки понимания</h4>
+                <ul>
+                    <li>«Какие моменты остались неясными?»</li>
+                    <li>«Что я объяснил слишком сложно?»</li>
+                    <li>«Как бы ты сформулировал это правило своими словами?»</li>
+                    <li>«Попробуй решить пример и объясни каждый шаг».</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Твои слова — это мост между знанием и пониманием.</strong> Каждый скрипт здесь — не просто фраза, а инструмент, который сохраняет доверие и уважение. Используй их, чтобы ученик чувствовал себя в безопасности и был открыт к обучению.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 15 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>15. Чек-лист проведения пробного занятия</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <h4>До занятия (за 15 минут)</h4>
+                <ul class="checklist">
+                    <li>Прийти вовремя, проверить внешний вид (Раздел 13).</li>
+                    <li>Проверить в CRM — имя ученика, возраст, класс, запрос.</li>
+                    <li>Подготовить диагностические материалы (тест, задания для собеседования).</li>
+                    <li>Подготовить доску, маркеры, тетрадь.</li>
+                    <li>Ознакомиться с направлением (школа/ОГЭ/ЕГЭ/другое) и целями, которые указал администратор.</li>
+                </ul>
+                <h4>Встреча и начало</h4>
+                <ul class="checklist">
+                    <li>Встретить ученика и родителя у ресепшн за 2–3 минуты до начала.</li>
+                    <li>Представиться: «Здравствуйте, я [Имя], преподаватель центра «ТЕОРЕМА». Проходите, пожалуйста, в кабинет» — ученику.</li>
+                    <li>Продолжить общение с родителем.</li>
+                </ul>
+                <h4>Общение с родителем (5–7 минут)</h4>
+                <ul class="checklist">
+                    <li>Задать 5 ключевых вопросов:
+                        <ol style="margin-top:4px;">
+                            <li>«Какую цель вы ставите перед обучением?»</li>
+                            <li>«В какие сроки хотите увидеть результат?»</li>
+                            <li>«Какие сложности в обучении вы замечали раньше?»</li>
+                            <li>«Есть ли особенности здоровья или восприятия, о которых мне стоит знать?»</li>
+                            <li>«Как ученик обычно реагирует на похвалу и критику?»</li>
+                        </ol>
+                    </li>
+                </ul>
+                <h4>Диагностика (15–20 минут)</h4>
+                <ul class="checklist">
+                    <li>Провести собеседование с учеником (узнать его интересы, отношение к предмету).</li>
+                    <li>Провести тестирование (письменное или устное) для определения уровня.</li>
+                    <li>Зафиксировать результаты теста в файле динамики.</li>
+                </ul>
+                <h4>Обратная связь родителю (5–7 минут)</h4>
+                <ul class="checklist">
+                    <li>Чётко и объективно сообщить уровень знаний (например, «уровень А2» или «знания на 3»).</li>
+                    <li>Описать основные пробелы (темы, которые требуют внимания).</li>
+                    <li>Предложить план работы: «Для достижения цели потребуется примерно [количество] месяцев при [частота] занятий в неделю».</li>
+                    <li>Упомянуть, что мы будем делать промежуточные контроли каждые 3 месяца и давать обратную связь в конце абонемента.</li>
+                    <li>Ответить на все вопросы родителя.</li>
+                </ul>
+                <h4>Завершение и передача администратору</h4>
+                <ul class="checklist">
+                    <li>Спросить у родителя: «Устраивает ли вас такой план? Хотите ли вы продолжить занятия в нашем центре?»</li>
+                    <li>Если родитель согласен — направить его к администратору для выбора абонемента и удобного расписания.</li>
+                    <li>Если родитель сомневается — мягко выяснить причину и предложить обсудить с администратором.</li>
+                    <li>Если родитель принял решение уйти — вежливо поблагодарить за визит, пожелать удачи, передать все данные администратору для анализа причин.</li>
+                </ul>
+                <h4>После занятия</h4>
+                <ul class="checklist">
+                    <li>Внести все данные в CRM: результаты диагностики, план, рекомендации (в поле «Комментарий»), сделать отметку о пробном занятии.</li>
+                    <li>Завести папку и вложить файл диагностики ученика (даже если он не остался — данные могут пригодиться).</li>
+                    <li>Сообщить администратору в мессенджере о результате (остался / не остался, если не остался — причину).</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Пробное занятие — это твой звёздный час.</strong> Именно здесь ты зажигаешь интерес, показываешь профессионализм и даёшь родителю уверенность, что они сделали правильный выбор. Отнесись к нему как к самому важному уроку.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 16 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>16. Ежедневный чек-лист преподавателя</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <h4>До занятия (за 15 минут)</h4>
+                <ul class="checklist">
+                    <li>Проверить CRM перед выходом из дома — убедиться, что занятия не отменены и не появилось новых записей.</li>
+                    <li>Прийти в центр ровно за 15 минут до начала.</li>
+                    <li>Проверить внешний вид (Раздел 13).</li>
+                    <li>Зайти в CRM — проверить расписание, кабинет, изменения, замены (перепроверить, что не появилось новых записей в свободные часы).</li>
+                    <li>Распечатать материалы (в учительской).</li>
+                    <li>Подготовить доску, маркеры, электронную тетрадь ученика.</li>
+                    <li>Посмотреть в тетради ученика — какие темы помечены как сложные (чтобы вернуться).</li>
+                </ul>
+                <h4>Во время занятия</h4>
+                <ul class="checklist">
+                    <li>Начать строго по расписанию (без опозданий).</li>
+                    <li>Встретить ученика доброжелательно (по имени).</li>
+                    <li>Спросить о непонятном из прошлой темы → повторить при необходимости.</li>
+                    <li>Записать тему и ДЗ в электронную тетрадь.</li>
+                    <li>Проверить понимание после объяснения (задание/вопрос/объяснение вслух).</li>
+                    <li>Использовать скрипты при сложных ситуациях (Раздел 14).</li>
+                    <li>Закончить строго по расписанию (без раннего отпуска).</li>
+                </ul>
+                <h4>После занятия</h4>
+                <ul class="checklist">
+                    <li>Проставить занятие в CRM (до 12:00 следующего дня).</li>
+                    <li>Убрать кабинет.</li>
+                    <li>Сообщить администратору в мессенджере о любых переносах/пропусках (в т.ч. если ученик писал напрямую).</li>
+                    <li>Ответить на сообщения администратора (если были).</li>
+                    <li>Пометить в тетради темы, вызвавшие затруднения (для возврата через 1–2 занятия).</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Дисциплина — это свобода.</strong> Когда ты следуешь чек-листу, ты не теряешь время зря, ты не пропускаешь важное, ты всегда готов на 100%. Маленькие ритуалы создают большой результат. Будь профессионалом в мелочах — и ученики будут тянуться к тебе.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 17 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>17. Стандарты работы с отзывами и репутацией</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <h4>1. Когда просить отзыв</h4>
+                <table>
+                    <thead><tr><th>Момент</th><th>Действие</th></tr></thead>
+                    <tbody>
+                        <tr><td>После 3-го занятия (адаптация прошла)</td><td>Преподаватель через администратора инициирует запрос обратной связи о формате и комфорте. Если клиент доволен — мягко просит оставить отзыв.</td></tr>
+                        <tr><td>После успешного продления абонемента</td><td>Родитель подтвердил лояльность — идеальный момент для запроса развёрнутого отзыва.</td></tr>
+                        <tr><td>После достижения промежуточного результата (контрольная работа, экзамен)</td><td>Клиент доволен результатом — попросить отзыв о работе преподавателя.</td></tr>
+                    </tbody>
+                </table>
+                <h4>2. Скрипт запроса отзыва (через администратора)</h4>
+                <blockquote>«Здравствуйте, [Имя родителя]! Мы рады, что вы с нами. Нам очень важно ваше мнение о работе центра и преподавателя [Имя]. Если вам комфортно, поделитесь, пожалуйста, впечатлениями — это помогает нам становиться лучше. Ваш отзыв можно оставить в [Google Карты / Яндекс Карты / соцсети]. Заранее спасибо!»</blockquote>
+
+                <h4>3. Запреты</h4>
+                <ul>
+                    <li>Запрещено просить «только хорошие» отзывы или исправлять негативные отзывы без конструктивного разбора.</li>
+                    <li>Запрещено дарить подарки или бонусы за отзывы (это дискредитирует честность).</li>
+                    <li>Запрещено обсуждать отзывы других учеников с текущими клиентами.</li>
+                </ul>
+
+                <h4>4. Работа с негативными отзывами</h4>
+                <ul>
+                    <li>Если клиент оставил негативный отзыв — преподаватель не вступает в полемику. Всё общение через руководителя или администратора.</li>
+                    <li>Руководитель связывается с клиентом в течение 24 часов, выясняет причину и предлагает решение.</li>
+                    <li>Преподаватель обязан проанализировать негативный отзыв и при необходимости скорректировать свою работу (обсудить с руководителем на методической встрече).</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Репутация — это то, что остаётся после тебя.</strong> Отзывы — это не просто слова, это мост между твоей работой и будущими учениками. Будь открытым к обратной связи, даже если она не всегда приятна. Именно через неё ты становишься лучше.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 18 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>18. Протокол адаптации и удержания клиентов (Retention)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <h4>1. Адаптация нового ученика (первые 2 недели)</h4>
+                <table>
+                    <thead><tr><th>Срок</th><th>Действие</th><th>Ответственный</th></tr></thead>
+                    <tbody>
+                        <tr><td>После 1-го занятия (пробного)</td><td>Преподаватель фиксирует в CRM уровень, пробелы, план. Администратор отправляет родителю договор и информацию по абонементам.</td><td>Преподаватель + администратор</td></tr>
+                        <tr><td>Через 3-е занятие (≈1 неделя)</td><td>Преподаватель через администратора инициирует адаптационный чек-ин (скрипт ниже).</td><td>Преподаватель инициирует, администратор отправляет</td></tr>
+                        <tr><td>Через 2 недели</td><td>Преподаватель даёт первую короткую обратную связь родителю (устно или через администратора): что получается, над чем работаем.</td><td>Преподаватель</td></tr>
+                    </tbody>
+                </table>
+                <p><strong>Скрипт адаптационного чек-ина (для родителя):</strong></p>
+                <blockquote>«Здравствуйте, [Имя]! Прошло уже 3 занятия. Как вам формат? Комфортно ли ребёнку? Есть ли что-то, что можно улучшить в процессе? Мы всегда открыты к диалогу, чтобы занятия приносили максимум пользы. С уважением, центр «ТЕОРЕМА» и преподаватель [Имя]».</blockquote>
+
+                <h4>2. Проактивная работа перед окончанием абонемента</h4>
+                <table>
+                    <thead><tr><th>Срок</th><th>Действие</th><th>Ответственный</th></tr></thead>
+                    <tbody>
+                        <tr><td>За 1 неделю до окончания абонемента</td><td>Преподаватель готовит короткую обратную связь (даже если абонемент ещё не закончился): что пройдено, прогресс, рекомендация по продлению.</td><td>Преподаватель</td></tr>
+                        <tr><td>За 3 дня до окончания</td><td>Администратор отправляет родителю напоминание о завершении абонемента и предложение продлить, прикладывая обратную связь преподавателя.</td><td>Администратор</td></tr>
+                        <tr><td>Если родитель не продлевает</td><td>Преподаватель через администратора предлагает бесплатную консультацию (15 мин) для обсуждения причин и корректировки плана.</td><td>Преподаватель инициирует, администратор связывается</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>3. Работа с пропусками (проактивное удержание)</h4>
+                <table>
+                    <thead><tr><th>Ситуация</th><th>Действие</th></tr></thead>
+                    <tbody>
+                        <tr><td>Ученик пропустил занятие без предупреждения</td><td>Преподаватель ставит «неявку» в CRM. Администратор связывается с родителем, выясняет причину. Преподаватель через администратора предлагает перенос (если причина уважительная).</td></tr>
+                        <tr><td>Ученик пропустил 2 занятия подряд</td><td>Преподаватель обязан сообщить администратору о риске потери клиента. Администратор звонит родителю для проактивного диалога.</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>4. Если клиент принял решение уйти</h4>
+                <ul>
+                    <li>Преподаватель не спорит и не давит.</li>
+                    <li>Преподаватель обязан выяснить причину (через администратора) и передать все диагностические материалы администратору для анализа.</li>
+                    <li>Администратор фиксирует причину ухода в CRM для статистики и улучшения работы центра.</li>
+                    <li><strong>Важно:</strong> даже при уходе — поблагодарить клиента за доверие и пожелать удачи. Это формирует положительную репутацию и возможность возврата.</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Каждый ученик — это не просто абонемент, это человек, который тебе доверился.</strong> Твоя забота о его прогрессе, внимание к деталям и проактивная позиция — это то, что превращает разовое занятие в долгосрочное сотрудничество. Удерживать клиента — значит быть не просто репетитором, а наставником и партнёром.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 19 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>19. Стандарты качества учебного процесса</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <h4>1. Единая структура занятия (обязательна)</h4>
+                <table>
+                    <thead><tr><th>Этап</th><th>Время</th><th>Содержание</th></tr></thead>
+                    <tbody>
+                        <tr><td>1. Проверка ДЗ</td><td>5–10 мин</td><td>Разбор ошибок, повторение ключевых моментов прошлой темы.</td></tr>
+                        <tr><td>2. Актуализация знаний</td><td>5 мин</td><td>Вопросы по пройденному, «мостик» к новой теме.</td></tr>
+                        <tr><td>3. Новая тема</td><td>15–20 мин</td><td>Объяснение нового материала (с проверкой понимания на каждом этапе).</td></tr>
+                        <tr><td>4. Отработка</td><td>10–15 мин</td><td>Практические задания под руководством преподавателя.</td></tr>
+                        <tr><td>5. Фиксация и ДЗ</td><td>5 мин</td><td>Запись нового материала в тетрадь, объяснение домашнего задания, ответы на вопросы.</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>2. Требования к домашнему заданию</h4>
+                <ul>
+                    <li>ДЗ даётся после каждого занятия (кроме пробного).</li>
+                    <li>Объём: 15–30 минут самостоятельной работы (в зависимости от возраста и уровня).</li>
+                    <li>ДЗ проверяется к началу следующего занятия.</li>
+                    <li>Если ученик не выполнил ДЗ — преподаватель выясняет причину (не понял, не было времени, забыл) и фиксирует в тетради. При систематическом невыполнении (2+ раза) — это «красный флаг».</li>
+                </ul>
+
+                <h4>3. Электронная тетрадь ученика (обязательный формат)</h4>
+                <table>
+                    <thead><tr><th>Дата</th><th>Тема занятия</th><th>Домашнее задание</th><th>Отметка о выполнении ДЗ</th><th>Сложные темы (для повторения)</th><th>Примечания</th></tr></thead>
+                    <tbody>
+                        <tr><td>01.09</td><td>Дроби</td><td>№ 5–10</td><td>+</td><td>Сложение дробей</td><td>—</td></tr>
+                        <tr><td>08.09</td><td>Уравнения</td><td>№ 12–15</td><td>—</td><td>Нет</td><td>Жаловался на усталость</td></tr>
+                    </tbody>
+                </table>
+                <p><strong>Требования:</strong></p>
+                <ul>
+                    <li>Тетрадь заполняется после каждого занятия (не позже чем через 1 час после окончания).</li>
+                    <li>Раздел «Сложные темы» обязателен — к ним преподаватель возвращается через 1–2 занятия.</li>
+                    <li>Тетрадь доступна для просмотра администратору и руководителю (для контроля качества).</li>
+                </ul>
+
+                <h4>4. База ошибок ученика (в электронной тетради)</h4>
+                <ul>
+                    <li>Преподаватель фиксирует типичные ошибки ученика по каждой теме.</li>
+                    <li>Это позволяет видеть прогресс («эту ошибку делал 3 раза, сейчас — 0 раз») и корректировать программу.</li>
+                    <li>Пример: «Ошибка: путает знаки при переносе в уравнениях — отработать отдельным блоком».</li>
+                </ul>
+
+                <h4>5. Методические встречи (1 раз в месяц)</h4>
+                <ul>
+                    <li>Все преподаватели участвуют в методической встрече (очной или онлайн) 1 раз в месяц.</li>
+                    <li>Обсуждаются: сложные случаи, обмен эффективными приёмами, анализ «красных флагов», новости по экзаменам.</li>
+                    <li>Участие — обязательное. Пропуск без уважительной причины — нарушение KPI (приравнивается к опозданию).</li>
+                </ul>
+
+                <h4>6. Запрещено (качество процесса)</h4>
+                <ul>
+                    <li>Использовать непроверенные/сомнительные материалы (все пособия должны быть одобрены методистом или руководителем).</li>
+                    <li>Давать ученику ДЗ в объёме, заведомо превышающем его возможности (это демотивирует).</li>
+                    <li>Оставлять ученика одного с заданием без контроля (преподаватель должен помогать и направлять в процессе отработки).</li>
+                    <li>Обсуждать с учеником успехи/неудачи других учеников (нарушение конфиденциальности).</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Качество — это не случайность, это результат осознанных решений.</strong> Единая структура, тетрадь, база ошибок — это не бюрократия, а инструменты, которые делают твою работу прозрачной, измеримой и эффективной. Ты создаёшь систему, в которой каждый ученик может достичь максимума.
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== РАЗДЕЛ 20 ===== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>20. Политика конфиденциальности и защита данных</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="accordion-body">
+                <h4>1. Что такое конфиденциальность в нашем центре</h4>
+                <p>Конфиденциальность — это защита личной информации учеников, родителей и внутренних данных центра от разглашения. Доверие клиентов строится на том, что их данные, успехи и проблемы не станут предметом обсуждения с третьими лицами.</p>
+
+                <h4>2. Запрещено:</h4>
+                <ul>
+                    <li><strong>Передавать кому-либо контакты учеников или родителей</strong> (телефон, email, адрес, соцсети) без письменного согласия.</li>
+                    <li><strong>Обсуждать успеваемость, поведение, личные качества или обстоятельства ученика</strong> с другими преподавателями (кроме случаев передачи смены — и то только в рамках учебного процесса), с другими учениками или другими родителями.</li>
+                    <li><strong>Показывать тетради, работы, диагностические материалы или файлы динамики одного ученика</strong> другому ученику или его родителям.</li>
+                    <li><strong>Обсуждать с клиентами</strong> финансовые условия других учеников, внутренние процессы центра (расписание, загрузка преподавателей, системы оплаты) или конфликтные ситуации с другими клиентами.</li>
+                    <li><strong>Публиковать в соцсетях, мессенджерах или других открытых источниках</strong> фото или видео с учениками без письменного согласия родителей, результаты учеников (даже анонимно — по ним можно идентифицировать человека), любую информацию, которая может навредить репутации ученика или центра.</li>
+                    <li><strong>Выносить за пределы центра</strong> распечатки методических материалов, шаблоны договоров, прайсы, бланки, внутренние регламенты и инструкции (кроме официально предоставленных копий).</li>
+                    <li><strong>Использовать личные контакты учеников или родителей</strong> для распространения информации (рекламные рассылки, опросы) без их явного согласия.</li>
+                </ul>
+
+                <h4>3. Что разрешено и обязательно</h4>
+                <ul>
+                    <li><strong>Обсуждать учебный прогресс ученика</strong> — только с его родителями (или с самим учеником, если он старше 18 лет) и только в рамках официальной обратной связи (Раздел 19).</li>
+                    <li><strong>Обсуждать учебные вопросы с другим преподавателем</strong> — только при передаче ученика на замену или при методическом разборе (и только в объёме, необходимом для учебного процесса).</li>
+                    <li><strong>Хранить и обрабатывать данные учеников</strong> — только в CRM и электронной тетради, доступ к которым имеют только сотрудники центра.</li>
+                    <li><strong>При передаче ученика другому преподавателю</strong> — передавать только учебную информацию: уровень, темы, ДЗ. Личная информация и контакты передаются только через администратора.</li>
+                </ul>
+
+                <h4>4. Ответственность за нарушение</h4>
+                <table>
+                    <thead><tr><th>Нарушение</th><th>Последствие</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Первое нарушение</strong> (неумышленное, незначительное)</td><td>Предупреждение, обсуждение с руководителем, разбор на методической встрече.</td></tr>
+                        <tr><td><strong>Повторное нарушение</strong> или умышленное разглашение</td><td>Лишение премии за месяц.</td></tr>
+                        <tr><td><strong>Грубое нарушение</strong> (разглашение контактов, публикация фото без согласия, передача внутренних документов третьим лицам)</td><td>Увольнение и возможная юридическая ответственность в соответствии с законодательством о защите персональных данных.</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>5. Памятка для преподавателя</h4>
+                <ul>
+                    <li><strong>Ты — хранитель доверия.</strong> Родители доверяют тебе не только знания, но и информацию о своих детях.</li>
+                    <li><strong>Не обсуждай учеников вне учебного контекста.</strong> Даже в курилке или в личных разговорах с коллегами.</li>
+                    <li><strong>Если сомневаешься — не делай.</strong> Если не уверен, можно ли поделиться информацией — спроси у администратора или руководителя.</li>
+                    <li><strong>Береги внутренние документы.</strong> Методики, шаблоны, прайсы — это интеллектуальная собственность центра.</li>
+                    <li><strong>Фото и видео — только с согласия.</strong> Перед публикацией любого контента с учениками — получи письменное разрешение родителей.</li>
+                </ul>
+                <div class="motivation">
+                    <strong>Конфиденциальность — это не ограничение, а проявление уважения.</strong> Когда ты хранишь чужие секреты и данные в безопасности, ты показываешь, что тебе можно доверять. А доверие — это основа любых долгосрочных отношений. Будь тем преподавателем, о котором родители говорят: «Мы знаем, что наши дети в надёжных руках».
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ЗАКЛЮЧИТЕЛЬНАЯ ЧАСТЬ (общая для всех) ===== -->
+        <div style="margin-top: 24px; padding: 16px 18px; background: rgba(255,255,255,0.3); border-radius: 12px; border: 1px solid rgba(38,198,249,0.1);">
+            <h3 style="font-family: 'Exo 2', sans-serif; font-size: 18px; color: #1e3a5f; margin: 0 0 6px 0;">Заключительные положения</h3>
+            <ul style="margin: 6px 0; padding-left: 20px;">
+                <li>Регламент вступает в силу с даты утверждения руководителем.</li>
+                <li>Изменения вносятся по инициативе руководителя или по предложению преподавателей (не реже 1 раза в полугодие).</li>
+                <li>Преподаватель подтверждает ознакомление подписью (электронно или на бумажном носителе).</li>
+            </ul>
+            <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(38,198,249,0.1); text-align: center; font-family: 'Exo 2', sans-serif; font-size: 15px;">
+                <p><strong>Руководитель центра «ТЕОРЕМА»</strong></p>
+                <p style="margin: 4px 0;">__________________ / ФИО /</p>
+                <p style="margin: 4px 0;">«___» ___________ 20__ г.</p>
+            </div>
+        </div>
+
+    </div> <!-- /content -->
+
+    <!-- ====== ПОДВАЛ ====== -->
+    <div class="footer">
+        © Репетиторский центр «ТЕОРЕМА» • Регламент преподавателя (2026)
+    </div>
+
+</div> <!-- /container -->
+
+<!-- ====== СКРИПТ АККОРДЕОНА ====== -->
+<script>
+    function toggleAccordion(headerElement) {
+        var item = headerElement.parentElement;
+        var body = item.querySelector('.accordion-body');
+        var icon = headerElement.querySelector('.icon');
+
+        // Закрываем все остальные (опционально — для аккордеона с одним открытым)
+        // Раскомментируйте, если хотите, чтобы открывался только один раздел
+        // var allItems = document.querySelectorAll('.accordion-item');
+        // allItems.forEach(function(el) {
+        //     if (el !== item) {
+        //         el.querySelector('.accordion-body').classList.remove('open');
+        //         el.querySelector('.icon').classList.remove('open');
+        //     }
+        // });
+
+        // Переключаем текущий
+        body.classList.toggle('open');
+        icon.classList.toggle('open');
+    }
+
+    // Открыть первый раздел по умолчанию (чтобы пользователь увидел, что это работает)
+    document.addEventListener('DOMContentLoaded', function() {
+        var firstItem = document.querySelector('.accordion-item');
+        if (firstItem) {
+            var firstBody = firstItem.querySelector('.accordion-body');
+            var firstIcon = firstItem.querySelector('.icon');
+            if (firstBody && firstIcon) {
+                firstBody.classList.add('open');
+                firstIcon.classList.add('open');
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
